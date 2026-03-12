@@ -1,27 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Code, 
-  Menu, 
-  X, 
-  ArrowRight, 
-  Moon, 
-  Sun, 
-  Monitor,
-  Github,
-  Sparkles
-} from 'lucide-react'
+import { Code2, Menu, X, Moon, Sun, Github, ArrowRight } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 const navigationItems = [
-  { name: 'Features', href: '#features', description: 'AI-powered development workflow' },
-  { name: 'How it Works', href: '#how-it-works', description: 'From idea to deployment' },
-  { name: 'Pricing', href: '#pricing', description: 'Transparent pricing plans' },
-  { name: 'Docs', href: '/docs', description: 'Technical documentation' },
+  { name: 'Features', href: '#features' },
+  { name: 'Process', href: '#process' },
+  { name: 'Pricing', href: '#pricing' },
+  { name: 'Docs', href: '/docs' },
 ]
 
 export function Navigation() {
@@ -34,7 +23,7 @@ export function Navigation() {
     setMounted(true)
     
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     
     window.addEventListener('scroll', handleScroll)
@@ -42,209 +31,168 @@ export function Navigation() {
   }, [])
 
   const toggleTheme = () => {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else if (theme === 'light') {
-      setTheme('system')
-    } else {
-      setTheme('dark')
-    }
-  }
-
-  const getThemeIcon = () => {
-    if (!mounted) return <Monitor className="h-4 w-4" />
-    
-    switch (theme) {
-      case 'light':
-        return <Sun className="h-4 w-4" />
-      case 'dark':
-        return <Moon className="h-4 w-4" />
-      default:
-        return <Monitor className="h-4 w-4" />
-    }
+    setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'glass border-b border-glass-border backdrop-blur-xl' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      isScrolled 
+        ? 'bg-background/95 backdrop-blur-sm border-b border-border' 
+        : 'bg-transparent'
+    }`}>
+      <div className="container">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-brand-500 to-brand-600 rounded-xl flex items-center justify-center">
-              <Code className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-white" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-lg leading-none">SaaS Builder</span>
-              <span className="text-xs text-muted-foreground">AI-Powered</span>
-            </div>
-          </motion.div>
+            <span className="font-semibold text-lg">Forge</span>
+            <Badge variant="secondary" className="hidden sm:inline-flex text-xs">
+              Beta
+            </Badge>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="group relative px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
-                <span className="relative z-10">{item.name}</span>
-                <motion.div
-                  className="absolute inset-0 bg-accent/50 rounded-lg"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileHover={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                />
+                {item.name}
               </a>
             ))}
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             {/* Theme Toggle */}
             <Button
               variant="ghost"
-              size="icon"
+              size="sm"
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-xl"
+              className="w-9 h-9 rounded-lg"
             >
-              {getThemeIcon()}
+              {mounted && theme === 'dark' ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
               <span className="sr-only">Toggle theme</span>
             </Button>
 
             {/* GitHub */}
             <Button
               variant="ghost"
-              size="icon"
-              className="w-9 h-9 rounded-xl"
+              size="sm"
+              className="w-9 h-9 rounded-lg"
               asChild
             >
-              <a href="https://github.com/julienmatondotezolo/build-emji" target="_blank" rel="noopener noreferrer">
+              <a 
+                href="https://github.com/julienmatondotezolo/build-emji" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="View on GitHub"
+              >
                 <Github className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
               </a>
             </Button>
 
-            {/* Beta Badge */}
-            <Badge variant="glass" className="px-3 py-1">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Beta
-            </Badge>
-
             {/* CTA Button */}
             <Button 
-              size="lg" 
-              className="gradient-primary text-white border-0 px-6 button-shine"
+              size="sm"
+              className="bg-brand-500 hover:bg-brand-600 text-white px-4"
             >
               Start Building
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-3 w-3" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-2">
             <Button
               variant="ghost"
-              size="icon"
+              size="sm"
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-xl"
+              className="w-9 h-9 rounded-lg"
             >
-              {getThemeIcon()}
+              {mounted && theme === 'dark' ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
             </Button>
             
             <Button
               variant="ghost"
-              size="icon"
+              size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-9 h-9 rounded-xl"
+              className="w-9 h-9 rounded-lg"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-4 w-4" />
               )}
+              <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden border-t border-glass-border glass"
-          >
-            <div className="container-custom py-6">
-              <nav className="space-y-4">
+          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-sm">
+            <div className="py-4 space-y-4">
+              <nav className="space-y-2">
                 {navigationItems.map((item) => (
-                  <motion.a
+                  <a
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="block group"
+                    className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
                   >
-                    <div className="glass rounded-xl p-4 hover:bg-white/10 transition-colors">
-                      <div className="text-base font-medium text-foreground mb-1">
-                        {item.name}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {item.description}
-                      </div>
-                    </div>
-                  </motion.a>
+                    {item.name}
+                  </a>
                 ))}
               </nav>
               
-              <div className="mt-6 space-y-4">
+              <div className="px-4 pt-4 border-t border-border">
                 <Button 
-                  size="lg" 
-                  className="w-full gradient-primary text-white border-0"
+                  className="w-full bg-brand-500 hover:bg-brand-600 text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Start Building
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 
-                <div className="flex items-center justify-center space-x-4">
-                  <Badge variant="glass" className="px-3 py-1">
-                    <Sparkles className="w-3 h-3 mr-1" />
+                <div className="flex items-center justify-center mt-4 space-x-4">
+                  <Badge variant="secondary" className="text-xs">
                     Beta
                   </Badge>
                   
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="rounded-xl"
+                    className="rounded-lg"
                     asChild
                   >
-                    <a href="https://github.com/julienmatondotezolo/build-emji" target="_blank" rel="noopener noreferrer">
+                    <a 
+                      href="https://github.com/julienmatondotezolo/build-emji" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
                       <Github className="h-4 w-4 mr-2" />
-                      View on GitHub
+                      GitHub
                     </a>
                   </Button>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </motion.nav>
+      </div>
+    </nav>
   )
 }

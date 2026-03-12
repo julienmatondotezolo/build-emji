@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    reactCompiler: true, // React 19 Compiler
-    ppr: true, // Partial Pre-rendering
-    dynamicIO: true, // Dynamic IO optimization
-  },
   // Enable modern bundling
   bundlePagesRouterDependencies: true,
   
