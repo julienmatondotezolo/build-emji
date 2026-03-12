@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, Check, Code2, Zap, Shield, Users, Clock, ChevronRight } from 'lucide-react'
+import { ArrowRight, Check, Code2, Zap, Shield, Users, Clock, ChevronRight, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -12,30 +12,30 @@ export default function HomePage() {
   const [showWizard, setShowWizard] = useState(false)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
       {/* Hero Section - Clean & Professional */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
-        <div className="container">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl">
             <div className="space-y-8">
               {/* Badge */}
-              <Badge variant="secondary" className="inline-flex items-center gap-2 px-3 py-1">
-                <div className="w-2 h-2 bg-brand-500 rounded-full animate-pulse" />
+              <Badge className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 border-blue-200">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                 AI-Powered Development Platform
               </Badge>
               
               {/* Main Headline */}
               <div className="space-y-6">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl text-gray-900">
                   Build enterprise SaaS
-                  <span className="block text-brand-600">
+                  <span className="block text-blue-600">
                     in days, not months
                   </span>
                 </h1>
                 
-                <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
                   Let AI agents handle the complexity. Transform your ideas into production-ready 
                   SaaS applications with enterprise-grade security and modern architecture.
                 </p>
@@ -45,7 +45,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-brand-500 hover:bg-brand-600 text-white px-8 py-3"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg"
                   onClick={() => setShowWizard(true)}
                 >
                   Start Building
@@ -55,7 +55,7 @@ export default function HomePage() {
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="px-8 py-3"
+                  className="px-8 py-4 text-lg border-gray-300 text-gray-700 hover:bg-gray-50"
                 >
                   View Demo
                   <ChevronRight className="ml-2 h-5 w-5" />
@@ -63,17 +63,17 @@ export default function HomePage() {
               </div>
               
               {/* Social Proof */}
-              <div className="flex items-center gap-8 pt-8 text-sm text-muted-foreground">
+              <div className="flex items-center gap-8 pt-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-success" />
+                  <Check className="h-4 w-4 text-green-500" />
                   <span>2-7 days to deployment</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-success" />
+                  <Check className="h-4 w-4 text-green-500" />
                   <span>Enterprise security</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-success" />
+                  <Check className="h-4 w-4 text-green-500" />
                   <span>Source code ownership</span>
                 </div>
               </div>
@@ -83,19 +83,19 @@ export default function HomePage() {
       </section>
 
       {/* Features Section - Systematic Grid */}
-      <section className="py-20 lg:py-32 bg-muted/50">
-        <div className="container">
-          <div className="max-w-3xl mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+      <section className="py-20 lg:py-32 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mb-16 text-center mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">
               Full-stack development, automated
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-gray-600 leading-relaxed">
               From requirements gathering to deployment, our AI agents handle every 
               aspect of modern SaaS development with enterprise-grade quality.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: Code2,
@@ -134,19 +134,17 @@ export default function HomePage() {
                 stats: "95% success rate"
               },
             ].map((feature, index) => (
-              <Card key={index} className="p-6 h-full border border-border hover:border-brand-200 transition-colors">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center">
-                      <feature.icon className="w-5 h-5 text-brand-600" />
-                    </div>
+              <Card key={index} className="p-6 h-full bg-white border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <feature.icon className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-3">
                       {feature.description}
                     </p>
-                    <div className="text-xs font-medium text-brand-600">
+                    <div className="text-xs font-medium text-blue-600">
                       {feature.stats}
                     </div>
                   </div>
@@ -159,18 +157,18 @@ export default function HomePage() {
 
       {/* How It Works - Process Timeline */}
       <section className="py-20 lg:py-32">
-        <div className="container">
-          <div className="max-w-3xl mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mb-16 text-center mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">
               From idea to deployment
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-gray-600 leading-relaxed">
               Our streamlined process transforms your concept into a fully deployed 
               SaaS application in record time.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
               {
                 step: "01",
@@ -197,24 +195,17 @@ export default function HomePage() {
                 duration: "30 minutes"
               },
             ].map((phase, index) => (
-              <div key={index} className="relative">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-brand-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mb-4 mx-auto">
-                    {phase.step}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-3">{phase.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                    {phase.description}
-                  </p>
-                  <div className="text-xs font-medium text-brand-600">
-                    {phase.duration}
-                  </div>
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mb-4 mx-auto">
+                  {phase.step}
                 </div>
-                
-                {/* Connector line */}
-                {index < 3 && (
-                  <div className="hidden lg:block absolute top-6 left-full w-full h-px bg-border -ml-6 -mr-6" />
-                )}
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{phase.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                  {phase.description}
+                </p>
+                <div className="text-xs font-medium text-blue-600">
+                  {phase.duration}
+                </div>
               </div>
             ))}
           </div>
@@ -222,13 +213,13 @@ export default function HomePage() {
       </section>
 
       {/* Pricing - Clean & Clear */}
-      <section className="py-20 lg:py-32 bg-muted/50">
-        <div className="container">
-          <div className="max-w-3xl mb-16 text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+      <section className="py-20 lg:py-32 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mb-16 text-center mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">
               Transparent pricing
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-gray-600 leading-relaxed">
               Choose the plan that fits your needs. All plans include full source code 
               ownership and enterprise support.
             </p>
@@ -281,28 +272,31 @@ export default function HomePage() {
             ].map((plan, index) => (
               <Card 
                 key={index} 
-                className={`p-8 relative ${
+                className={`p-8 relative bg-white ${
                   plan.popular 
-                    ? 'border-brand-500 shadow-lg' 
-                    : 'border-border'
+                    ? 'border-blue-500 border-2 shadow-lg' 
+                    : 'border-gray-200 border'
                 }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-brand-500 text-white">Most Popular</Badge>
+                    <Badge className="bg-blue-600 text-white px-3 py-1">
+                      <Star className="w-3 h-3 mr-1" />
+                      Most Popular
+                    </Badge>
                   </div>
                 )}
                 
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
-                  <div className="text-4xl font-bold mb-2">{plan.price}</div>
-                  <p className="text-sm text-muted-foreground">{plan.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">{plan.price}</div>
+                  <p className="text-sm text-gray-600">{plan.description}</p>
                 </div>
                 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm">
-                      <Check className="w-4 h-4 text-success mr-3 flex-shrink-0" />
+                    <li key={featureIndex} className="flex items-center text-sm text-gray-700">
+                      <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -311,10 +305,9 @@ export default function HomePage() {
                 <Button 
                   className={`w-full ${
                     plan.popular 
-                      ? 'bg-brand-500 hover:bg-brand-600 text-white' 
-                      : ''
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+                      : 'bg-white hover:bg-gray-50 text-gray-900 border border-gray-300'
                   }`}
-                  variant={plan.popular ? 'default' : 'outline'}
                 >
                   Get Started
                 </Button>
@@ -326,17 +319,17 @@ export default function HomePage() {
 
       {/* CTA Section - Clean & Focused */}
       <section className="py-20 lg:py-32">
-        <div className="container">
+        <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-6">
               Ready to build your SaaS?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               Join hundreds of founders who trust our platform to bring their ideas to life.
             </p>
             <Button 
               size="lg" 
-              className="bg-brand-500 hover:bg-brand-600 text-white px-8 py-3"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg"
               onClick={() => setShowWizard(true)}
             >
               Start Building Today
@@ -347,17 +340,17 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t bg-muted/30">
-        <div className="container">
+      <footer className="py-12 border-t border-gray-200 bg-white">
+        <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Code2 className="w-4 h-4 text-white" />
               </div>
-              <span className="font-semibold text-lg">Forge</span>
+              <span className="font-semibold text-lg text-gray-900">Forge</span>
             </div>
             
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-6 text-sm text-gray-600">
               <span>Built by Emji</span>
               <span>•</span>
               <span>Powered by AI</span>

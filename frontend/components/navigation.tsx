@@ -37,18 +37,18 @@ export function Navigation() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
       isScrolled 
-        ? 'bg-background/95 backdrop-blur-sm border-b border-border' 
-        : 'bg-transparent'
+        ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm' 
+        : 'bg-white/80 backdrop-blur-sm'
     }`}>
-      <div className="container">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <Code2 className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-lg">Forge</span>
-            <Badge variant="secondary" className="hidden sm:inline-flex text-xs">
+            <span className="font-semibold text-lg text-gray-900">Forge</span>
+            <Badge className="hidden sm:inline-flex text-xs bg-blue-50 text-blue-700 border-blue-200">
               Beta
             </Badge>
           </div>
@@ -59,7 +59,7 @@ export function Navigation() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               >
                 {item.name}
               </a>
@@ -73,7 +73,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg"
+              className="w-9 h-9 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             >
               {mounted && theme === 'dark' ? (
                 <Sun className="h-4 w-4" />
@@ -87,7 +87,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="sm"
-              className="w-9 h-9 rounded-lg"
+              className="w-9 h-9 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
               asChild
             >
               <a 
@@ -103,7 +103,7 @@ export function Navigation() {
             {/* CTA Button */}
             <Button 
               size="sm"
-              className="bg-brand-500 hover:bg-brand-600 text-white px-4"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4"
             >
               Start Building
               <ArrowRight className="ml-2 h-3 w-3" />
@@ -116,7 +116,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg"
+              className="w-9 h-9 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             >
               {mounted && theme === 'dark' ? (
                 <Sun className="h-4 w-4" />
@@ -129,7 +129,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-9 h-9 rounded-lg"
+              className="w-9 h-9 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             >
               {isMobileMenuOpen ? (
                 <X className="h-4 w-4" />
@@ -143,7 +143,7 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-sm">
+          <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="py-4 space-y-4">
               <nav className="space-y-2">
                 {navigationItems.map((item) => (
@@ -151,16 +151,16 @@ export function Navigation() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-colors"
+                    className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                   >
                     {item.name}
                   </a>
                 ))}
               </nav>
               
-              <div className="px-4 pt-4 border-t border-border">
+              <div className="px-4 pt-4 border-t border-gray-200">
                 <Button 
-                  className="w-full bg-brand-500 hover:bg-brand-600 text-white"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Start Building
@@ -168,14 +168,14 @@ export function Navigation() {
                 </Button>
                 
                 <div className="flex items-center justify-center mt-4 space-x-4">
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge className="text-xs bg-blue-50 text-blue-700 border-blue-200">
                     Beta
                   </Badge>
                   
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="rounded-lg"
+                    className="rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                     asChild
                   >
                     <a 
